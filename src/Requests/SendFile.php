@@ -15,7 +15,7 @@ class SendFile extends Request implements HasBody
 
     public function __construct(
         private readonly string $agendaId,
-        private readonly string $files,
+        private readonly array $files,
     )
     {
     }
