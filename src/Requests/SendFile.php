@@ -3,8 +3,11 @@
 namespace Susep\Requests;
 
 use Saloon\Contracts\Body\HasBody;
+use Saloon\Data\MultipartValue;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
+use Saloon\Traits\Body\HasFormBody;
+use Saloon\Traits\Body\HasJsonBody;
 use Saloon\Traits\Body\HasMultipartBody;
 
 class SendFile extends Request implements HasBody
@@ -15,7 +18,7 @@ class SendFile extends Request implements HasBody
 
     public function __construct(
         private readonly string $agendaId,
-        private readonly array $files,
+        private readonly string $file,
     )
     {
     }
@@ -25,18 +28,18 @@ class SendFile extends Request implements HasBody
         return "/SRD-ApiGateway/v1/envios";
     }
 
-    protected function defaultHeaders(): array
-    {
-        return [
-            'Content-Type' => 'application/x-www-form-urlencoded',
-        ];
-    }
-
     protected function defaultBody(): array
     {
         return [
-            'agendaEntidadeId' => $this->agendaId,
-            'conteudo' => $this->files,
+            new MultipartValue(
+                name: 'agendaEntidadeId',
+                value: $this->agendaId
+            ),
+            new MultipartValue(
+                name: 'conteudo',
+                value: $this->file,
+                filename: 'file2.json'
+            ),
         ];
     }
 }
