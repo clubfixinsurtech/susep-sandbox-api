@@ -20,7 +20,7 @@ class Connector extends SaloonConnector
 
     public function resolveBaseUrl(): string
     {
-        return "http://{$this->subdomain}.susep.gov.br/safe";
+        return "https://{$this->subdomain}.susep.gov.br/safe";
     }
 
 }
