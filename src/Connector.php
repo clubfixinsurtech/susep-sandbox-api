@@ -23,4 +23,10 @@ class Connector extends SaloonConnector
         return "https://{$this->subdomain}.susep.gov.br/safe";
     }
 
+    protected function defaultConfig(): array
+    {
+        return [
+            'verify' => $this->production,
+        ];
+    }
 }
