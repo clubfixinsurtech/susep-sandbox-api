@@ -26,7 +26,7 @@ class Connector extends SaloonConnector
     protected function defaultConfig(): array
     {
         return [
-            'verify' => $this->production,
+            'verify' => false, // $this->production,
         ];
     }
 }
